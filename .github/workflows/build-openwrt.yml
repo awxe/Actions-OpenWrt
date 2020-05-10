@@ -61,7 +61,6 @@ jobs:
       id: package
       run: |
         cd openwrt
-        make menuconfig
         make download -j8 V=s
         
     - name: Compile the firmware
