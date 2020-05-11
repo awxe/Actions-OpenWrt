@@ -22,8 +22,6 @@ on:
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
-#  FEEDS_CONF: feeds.conf.default
-#  CONFIG_FILE: .config
   SSH_ACTIONS: true
   TZ: Asia/Shanghai
 
@@ -77,9 +75,3 @@ jobs:
       with:
         name: OpenWrt_bin
         path: openwrt/bin
-
-    - name: Upload firmware directory
-      uses: actions/upload-artifact@master
-      with:
-        name: OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
-        path: ${{ env.FIRMWARE }}
