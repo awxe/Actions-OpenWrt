@@ -25,8 +25,6 @@ env:
 #  FEEDS_CONF: feeds.conf.default
 #  CONFIG_FILE: .config
   SSH_ACTIONS: true
-  UPLOAD_BIN_DIR: false
-  UPLOAD_FIRMWARE: true
   TZ: Asia/Shanghai
 
 jobs:
@@ -38,7 +36,6 @@ jobs:
       uses: actions/checkout@master
 
     - name: Initialization environment
-    
       run: |
         sudo -E apt-get -qq update
         sudo -E apt-get -yqq install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3.5 python2.7 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler g++-multilib antlr3 gperf
@@ -56,6 +53,12 @@ jobs:
     - name: SSH connection to Actions
       uses: P3TERX/debugger-action@master
       if: env.SSH_ACTIONS == 'true' || contains(github.event.action, 'ssh')
+      
+    - name: Upload .config
+      uses: actions/upload-artifact@master
+      with:
+        name: OpenWrt_config
+        path: openwrt/.config
 
     - name: Download package
       id: package
@@ -72,11 +75,11 @@ jobs:
     - name: Upload bin directory
       uses: actions/upload-artifact@master
       with:
-        name: OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
+        name: OpenWrt_bin
         path: openwrt/bin
 
     - name: Upload firmware directory
       uses: actions/upload-artifact@master
       with:
-        name: OpenWrt
-        path: openwrt/bin
+        name: OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
+        path: ${{ env.FIRMWARE }}
