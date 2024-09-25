@@ -49,7 +49,7 @@ jobs:
       run: cd openwrt && ./scripts/feeds install -a
   
     - name: SSH connection to Actions
-      uses: P3TERX/ssh2actions
+      uses: P3TERX/ssh2actions@main
       if: env.SSH_ACTIONS == 'true' || contains(github.event.action, 'ssh')
       
     - name: Upload .config
