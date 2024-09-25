@@ -56,16 +56,24 @@ jobs:
       #- name: SSH connection to Actions
       #uses: P3TERX/ssh2actions@main
       #if: env.SSH_ACTIONS == 'true' || contains(github.event.action, 'ssh')
-      
-      #- name: Upload .config
-      #uses: actions/upload-artifact@master
-      #with:
-      #  name: OpenWrt_config
-      #  path: openwrt/.config
+ 
+    - name: Start SSH via tmate
+      uses: P3TERX/ssh2actions@main
+  # Send connection info to Telegram (optional)
+  # You can find related documents here: https://core.telegram.org/bots
+      env:
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}  
+  
+    - name: Upload .config
+      uses: actions/upload-artifact@master
+      with:
+        name: OpenWrt_config
+        path: openwrt/.config
 
-    - name: Load custom configuration
-      run: |
-        [ -e .config ] && mv .config openwrt/.config
+    #- name: Load custom configuration
+    #  run: |
+     #   [ -e .config ] && mv .config openwrt/.config
 
     - name: Download package
       id: package
