@@ -73,6 +73,7 @@ jobs:
       with:
         name: OpenWrt_config
         path: openwrt/.config
+        include-hidden-files: true
 
     #- name: Load custom configuration
     #  run: |
