@@ -90,7 +90,7 @@ jobs:
       id: compile
       run: |
         cd openwrt
-          make -j6 V=s
+          make -j1 V=s
       
     - name: Upload bin directory
       uses: actions/upload-artifact@master
