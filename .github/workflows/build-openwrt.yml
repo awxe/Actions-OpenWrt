@@ -65,13 +65,8 @@ jobs:
         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}  
      
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v3
-    
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v3
-      with:
-        limit-access-to-actor: true
+    #- name: Setup tmate session
+    #  uses: mxschmitt/action-tmate@v3
         
     - name: Upload .config
       uses: actions/upload-artifact@master
