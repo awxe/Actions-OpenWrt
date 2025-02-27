@@ -68,14 +68,15 @@ jobs:
         include-hidden-files: true
 
     - name: Load custom configuration
+      if: [ -e .config ]
       run: |
-        [ -e .config ] && mv .config openwrt/.config
+         mv .config openwrt/.config
 
     - name: Compile the firmware
       #id: compile
       run: |
         cd openwrt
-          make
+        make
       
     - name: Upload bin directory
       uses: actions/upload-artifact@master
