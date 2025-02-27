@@ -68,9 +68,12 @@ jobs:
         include-hidden-files: true
 
     - name: Load custom configuration
-      if: [ -e .config ]
       run: |
-         mv .config openwrt/.config
+        [ -e .config ] && mv .config openwrt/.config
+
+    - name: The demo step has failed
+      if: ${{ failure() }}
+      run: echo "no .config"
 
     - name: Compile the firmware
       #id: compile
