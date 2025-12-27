@@ -69,14 +69,11 @@ jobs:
 
     - name: Load custom configuration
       run: |
-        [ -e .config ] && mv .config openwrt/.config
+        [ -e .config ] && mv .config openwrt/.config && echo ".config ok"
 
     - name: The demo step has failed
       if: ${{ failure() }}
       run: echo "no .config"
-
-    - name: The .config exist
-      run: [ -e .config ] && echo ".config ok"
 
     - name: Compile the firmware
       #id: compile
