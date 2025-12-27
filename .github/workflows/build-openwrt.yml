@@ -56,16 +56,16 @@ jobs:
     #  uses: P3TERX/ssh2actions@main
     #  if: env.SSH_ACTIONS == 'true' || contains(github.event.action, 'ssh')
      
-    - name: Setup tmate session
-      if: env.SSH_ACTIONS == 'true'
-      uses: mxschmitt/action-tmate@v3
+    #- name: Setup tmate session
+    #  if: env.SSH_ACTIONS == 'true'
+    #  uses: mxschmitt/action-tmate@v3
         
-    - name: Upload .config
-      uses: actions/upload-artifact@master
-      with:
-        name: OpenWrt_config
-        path: openwrt/.config
-        include-hidden-files: true
+    #- name: Upload .config
+    #  uses: actions/upload-artifact@master
+    #  with:
+    #    name: OpenWrt_config
+    #    path: openwrt/.config
+    #    include-hidden-files: true
 
     - name: Load custom configuration
       run: |
