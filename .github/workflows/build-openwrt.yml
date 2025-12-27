@@ -76,7 +76,7 @@ jobs:
       run: echo "no .config"
 
     - name: The .config exist
-      run: [ -e openwrt/.config ] && echo ".config ok"
+      run: [ -e .config ] && echo ".config ok"
 
     - name: Compile the firmware
       #id: compile
