@@ -44,7 +44,7 @@ jobs:
     #    sudo timedatectl set-timezone "$TZ"
         
     - name: Clone source code
-      run: git clone --branch openwrt-24.10 https://git.openwrt.org/openwrt/openwrt.git openwrt
+      run: git clone --branch openwrt-24.10 https://github.com/openwrt/openwrt.git openwrt
       
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
